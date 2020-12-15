@@ -1,14 +1,16 @@
 const fileInput = document.getElementById("file");
 const submitBtn = document.querySelector(".submit-btn");
 const output = document.querySelector(".output");
-
-
 let fileToUpload = null;
+const csrftoken = getCookie('csrftoken');
+
+let formData = new FormData()
 
 fileInput.addEventListener("change", (e) => {
 	// Get the selected file
 	const [file] = e.target.files;
-	fileToUpload = file;
+  fileToUpload = file;
+  formData.append('audiofile', fileToUpload)
 	document.querySelector(".selected-file").innerHTML = `${file.name} (${(
 		file.size / 1000
 	).toFixed(2)}Kb)`;
@@ -20,27 +22,21 @@ submitBtn.addEventListener("click", (e) => {
 	upload(fileToUpload);
 });
 
-// This will upload the file after having read it
 const upload = (file) => {
   let LOADER = "";
-  LOADER += `<div id="loaderbox" class="loader">
+  LOADER += `<div class="loader">
               <div class="line"></div>
               <div class="line"></div>
               <div class="line"></div>
               <div class="line"></div>
             </div>`;
 	output.innerHTML = LOADER;
-	console.log(file);
-// 	fetch("", {
-//     method: 'POST',
-//     body: new FormData('audiofile',file),
-//     headers: { "X-CSRFToken": csrftoken },
-// })
-    fetch(form.action, {
-        method: "POST",
-        body: new FormData(form)
+  console.log(file);
+fetch("", {
+        method: 'POST',
+        body: formData,
         headers: { "X-CSRFToken": csrftoken },
-      })
+})
 		.then(
 			(response) => response.json() // if the response is a JSON object
 		)
@@ -50,7 +46,7 @@ const upload = (file) => {
 			for (const item of data) {
 				// just an example, map this data accordingly
         HTML += `<div class="post">
-                  <div>${item}</div>
+                  <div class="output-badge">${item}</div>
                 </div>`;
 			}
 			output.innerHTML = HTML;
@@ -59,6 +55,7 @@ const upload = (file) => {
 			(error) => (output.innerHTML = "Error!") // Handle the error response object
 		);
 };
+
 function getCookie(name) {
   let cookieValue = null;
   if (document.cookie && document.cookie !== '') {

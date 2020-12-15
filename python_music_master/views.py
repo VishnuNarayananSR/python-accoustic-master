@@ -8,6 +8,7 @@ from django.http import JsonResponse
 def upload(request):
     if request.method == 'POST':
         try:
+            #print(request)
             myfile = request.FILES['audiofile']
         except:
             return JsonResponse("Didn't recieve any file!", safe=False)
