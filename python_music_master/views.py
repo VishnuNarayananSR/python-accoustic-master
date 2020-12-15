@@ -4,24 +4,16 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .backend.predict import predicttest
 from time import sleep
+from django.http import JsonResponse
 def upload(request):
     if request.method == 'POST':
         try:
             myfile = request.FILES['audiofile']
         except:
-            return render(request, 'prediction.html', {
-            'result': ["Didn't recieve any file!"]
-            })
+            return JsonResponse("Didn't recieve any file!", safe=False)
         fs = FileSystemStorage()
         filename = fs.save(os.path.join('media/',myfile.name), myfile)
         result = predicttest(file_name=filename)
-        return render(request, 'prediction.html', {
-            'result': result
-        })
+        return JsonResponse(result, safe=False)
+        
     return render(request, 'index.html')
-
-# def prediction(request):
-#         return render(request, 'prediction.html', {'result': result})
-    # else:
-    #     form = UploadFileForm()
-    # return render(request, 'upload.html', {'form': form})

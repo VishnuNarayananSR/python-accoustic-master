@@ -1,12 +1,37 @@
 {% extends 'base_layout.html' %}
     {% block content %}
-    <h1>Music Instrument Identifier</h1>
+
+<div class="form">
+    <form method= "POST" enctype="multipart/form-data">
+        {%csrf_token %}
+        <div class="file-input">
+          <input type="file" id="file" name="audiofile">
+          <label for="file">Select File</label>
+          <div class="selected-file"></div>
+        </div>
+        <button class="submit-btn" type="submit">submit</button>
+    </form>
+</div>
+    <section class="output"></section>
+      
+    {% endblock %}
+
+
+<!-- 
     <div id="form" class="form">
         <form method= "POST" enctype="multipart/form-data">
-            {%csrf_token %}    
+                
             <input type="file" name="audiofile">
             <button type="submit">Upload File</button> 
         </form>
+        <form>
+            {%csrf_token %}
+            <div class="file-input">
+              <input type="file" id="file" name="audio">
+              <label for="file">Select File</label>
+              <div class="selected-file"></div>
+            </div>
+            <button class="submit-btn" type="submit">submit</button>
+        </form>
     </div>
-            
-    {% endblock %}
+    <section class="output"></section> -->
