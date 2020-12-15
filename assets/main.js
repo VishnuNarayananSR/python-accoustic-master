@@ -2,6 +2,7 @@ const fileInput = document.getElementById("file");
 const submitBtn = document.querySelector(".submit-btn");
 const output = document.querySelector(".output");
 
+
 let fileToUpload = null;
 
 fileInput.addEventListener("change", (e) => {
@@ -36,7 +37,7 @@ const upload = (file) => {
 //     headers: { "X-CSRFToken": csrftoken },
 // })
     fetch(form.action, {
-        method: form.method,
+        method: "POST",
         body: new FormData(form)
         headers: { "X-CSRFToken": csrftoken },
       })
