@@ -1,4 +1,4 @@
-from .settings import *
+from settings import *
 from scipy.io import wavfile
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
