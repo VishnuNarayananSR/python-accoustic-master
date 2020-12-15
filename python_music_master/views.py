@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .backend.predict import predict
-from time import sleep
 from django.http import JsonResponse
 def upload(request):
     if request.method == 'POST':

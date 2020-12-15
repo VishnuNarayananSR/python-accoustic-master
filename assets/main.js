@@ -5,7 +5,6 @@ let fileToUpload = null;
 const csrftoken = getCookie('csrftoken');
 
 let formData = new FormData()
-
 fileInput.addEventListener("change", (e) => {
 	// Get the selected file
 	const [file] = e.target.files;
@@ -24,7 +23,7 @@ submitBtn.addEventListener("click", (e) => {
 
 const upload = (file) => {
   let LOADER = "";
-  LOADER += `<h1>Showing results:</h1>
+  LOADER += `<p>Showing results:</p>
             <div class="loader">
               <div class="line"></div>
               <div class="line"></div>
@@ -32,7 +31,7 @@ const upload = (file) => {
               <div class="line"></div>
             </div>`;
 	output.innerHTML = LOADER;
-  console.log(file);
+
 fetch("", {
         method: 'POST',
         body: formData,
@@ -42,7 +41,7 @@ fetch("", {
 			(response) => response.json() // if the response is a JSON object
 		)
 		.then((data) => {
-			let HTML = `<h1>Showing results:</h1>`;
+			let HTML = `<p>Showing results:</p>`;
 			for (const item of data) {
         HTML += `<div class="output-badge">
                   ${item}

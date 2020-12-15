@@ -16,24 +16,24 @@ label{
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 3px;
     font-size: 14px;
     font-weight: 600;
     color: #fff;
     font-size: 14px;
-    padding: 10px 12px;
-    background-color: #4245a8;
+    padding: 10px 25px;
+    background-color: #333;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 15px;
   }
 body{
     background-color: whitesmoke;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 button {
     width: 100px;
     height: 35px;
-    font-family: 'Roboto', sans-serif;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
@@ -60,7 +60,9 @@ h1{
 .form{
     height: 200px;
     width: 300px;
-    background: linear-gradient(to right, #2193b0,#6dd5ed);
+    background: linear-gradient(to right, #84fab0,#8fd3f4);
+    background-size: 100% 100%;
+    animation: animateBg 3s ease infinite;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
     padding: 50px;
@@ -75,16 +77,14 @@ input, button {
     flex-basis: 100%;
 }
 .output-badge{
-    text-transform: capitalize;
-    height:min-content;
     flex-basis: 30%;
     font-weight:300;
     display: inline-block;
-    padding: 5px 15px 5px;
+    padding: 3px 6px;
+    margin-right: 6px;
     background-color: #333;
     color:whitesmoke;
-    border-radius: 70px;
-    margin: 10px;
+    border-radius: 5px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
     

@@ -8,13 +8,13 @@
     <title>Accoustic Master</title>
 </head>
 <body>
-    <h1 style="margin: 50px;">Music Instrument Identifier</h1>
+    <h1 style="margin: 50px;">Accoustic Master</h1>
     <div class="container">
 
         {%block content%}
 
         {%endblock%}
     </div>
-    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'main.js' %}?{% now 'U' %}"></script>
 </body>
 </html>
