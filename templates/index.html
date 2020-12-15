@@ -5,14 +5,15 @@
     <form method= "POST" enctype="multipart/form-data">
         {%csrf_token %}
         <div class="file-input">
-          <input type="file" id="file" name="audiofile">
-          <label for="file">Select File</label>
-          <div class="selected-file"></div>
+            <label for="file">Upload audio file</label>
+            <input type="file" id="file" name="audiofile">
+            <div class="selected-file"></div>
         </div>
-        <button class="submit-btn" type="submit">submit</button>
+        <button class="submit-btn" type="Upload">submit</button>
     </form>
 </div>
-    <section class="output"></section>
+    <section class="output">
+    </section>
       
     {% endblock %}
 

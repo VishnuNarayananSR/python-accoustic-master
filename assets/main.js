@@ -24,7 +24,8 @@ submitBtn.addEventListener("click", (e) => {
 
 const upload = (file) => {
   let LOADER = "";
-  LOADER += `<div class="loader">
+  LOADER += `<h1>Showing results:</h1>
+            <div class="loader">
               <div class="line"></div>
               <div class="line"></div>
               <div class="line"></div>
@@ -41,13 +42,11 @@ fetch("", {
 			(response) => response.json() // if the response is a JSON object
 		)
 		.then((data) => {
-			// map your data to html
-			let HTML = "";
+			let HTML = `<h1>Showing results:</h1>`;
 			for (const item of data) {
-				// just an example, map this data accordingly
-        HTML += `<div class="post">
-                  <div class="output-badge">${item}</div>
-                </div>`;
+        HTML += `<div class="output-badge">
+                  ${item}
+                  </div>`;
 			}
 			output.innerHTML = HTML;
 		})

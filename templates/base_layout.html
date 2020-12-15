@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}?{% now 'U' %}">
     <title>Accoustic Master</title>
 </head>
 <body>
-    <h1>Music Instrument Identifier</h1>
+    <h1 style="margin: 50px;">Music Instrument Identifier</h1>
     <div class="container">
 
         {%block content%}
