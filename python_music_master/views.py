@@ -7,7 +7,6 @@ from time import sleep
 from django.http import JsonResponse
 def upload(request):
     if request.method == 'POST':
-        sleep(3)
         try:
             myfile = request.FILES['audiofile']
         except:

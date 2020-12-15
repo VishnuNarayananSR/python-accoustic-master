@@ -44,5 +44,5 @@ def predict(file_name):
     return result
 
 
-def predicttest(file_name):
-    return ['Place holder result']
+# def predicttest(file_name):
+#     return ['Place holder result','Placeholder again']

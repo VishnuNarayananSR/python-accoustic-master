@@ -75,9 +75,19 @@ input, button {
     flex-basis: 100%;
 }
 .output-badge{
-    flex-basis: 100%;
-    margin: 50px;
-    color: rebeccapurple;
+    text-transform: capitalize;
+    height:min-content;
+    flex-basis: 30%;
+    font-weight:300;
+    display: inline-block;
+    padding: 5px 15px 5px;
+    background-color: #333;
+    color:whitesmoke;
+    border-radius: 70px;
+    margin: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+    
 }
 .invisible{
     visibility: hidden;
