@@ -1,4 +1,4 @@
-from .settings import *
+from settings import *
 from .preprocess import purifier
 from scipy.io import wavfile
 from librosa import to_mono, resample
