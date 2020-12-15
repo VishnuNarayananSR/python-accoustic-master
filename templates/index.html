@@ -1,0 +1,12 @@
+{% extends 'base_layout.html' %}
+    {% block content %}
+    <h1>Music Instrument Identifier</h1>
+    <div id="form" class="form">
+        <form method= "POST" enctype="multipart/form-data">
+            {%csrf_token %}    
+            <input type="file" name="audiofile">
+            <button type="submit">Upload File</button> 
+        </form>
+    </div>
+            
+    {% endblock %}

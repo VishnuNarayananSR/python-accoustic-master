@@ -1,0 +1,9 @@
+django
+numpy==1.18.5
+tensorflow
+scipy
+librosa
+kapre==0.3.4
+pandas
+sklearn
+tqdm
