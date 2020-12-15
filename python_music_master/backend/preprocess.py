@@ -1,4 +1,4 @@
-from .settings import *
+from settings import *
 import argparse
 from glob import glob
 from tqdm import tqdm
