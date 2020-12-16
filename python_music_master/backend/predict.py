@@ -28,10 +28,10 @@ def predict(file_name):
     X_test = []
     for i in range(0, signal.shape[0], DURATION):
         signal_strip = signal[i:i+DURATION]
-        signal_strip.reshape(-1,1)
+        signal_strip = signal_strip.reshape(-1,1)
         if signal_strip.shape[0] < DURATION:
             tmp = np.zeros((DURATION,1))
-            tmp[:signal_strip.shape[0],:] = signal_strip.reshape(-1, 1)
+            tmp[:signal_strip.shape[0],:] = signal_strip
             signal_strip = tmp
         X_test.append(signal_strip)
     X_test = np.array(X_test)
@@ -47,6 +47,7 @@ def predict(file_name):
         return ["Oops Sorry.I couldn't distinguish any sounds...I realise I'm a noob."]
     return result
 
+print(predict('ChillingMusic.wav'))
 
 # def predicttest(file_name):
 #     return ['Place holder result','Placeholder again']
