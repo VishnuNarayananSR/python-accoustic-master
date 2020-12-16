@@ -8,13 +8,21 @@
     <title>Accoustic Master</title>
 </head>
 <body>
-    <h1 style="margin: 50px;">Accoustic Master</h1>
     <div class="container">
-
+        <h1 style="margin: 50px;">Accoustic Master</h1>
         {%block content%}
 
         {%endblock%}
     </div>
+    
+    <footer>
+        <div class="info">
+            <p>My knowledge is limited but I am able to distinguish the following sounds:</p>
+
+            <p>Cello, Clarinet, Flute, Accoustic Guitar, Electric Guitar, Organ, Piano, Saxophone, Trumpet, Violin, Human Voice</p>
+        </div>
+    </footer>
     <script src="{% static 'main.js' %}?{% now 'U' %}"></script>
 </body>
+
 </html>

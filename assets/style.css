@@ -27,8 +27,19 @@ label{
     margin-bottom: 15px;
   }
 body{
+    margin: 0px;
+    width: 100%;
     background-color: whitesmoke;
     font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+footer{
+    position: absolute;
+    margin: 0px;
+    min-height: 15vh;
+    min-width: 100%;
+    column-span: all;
+    text-align: center;
+    background-color: #333;
 }
 
 button {
@@ -49,10 +60,19 @@ button {
     }
 
 h1{
+    letter-spacing: 2px;
+    font-weight: 600;
     text-align: center;
     flex-basis: 100%;
 }
+.info p{
+    font-size: 11px;
+    font-weight: lighter;
+    letter-spacing: 1.5px;
+    color:#fff;
+}
 .container{
+    min-height: 85vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
