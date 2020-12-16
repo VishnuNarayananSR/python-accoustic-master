@@ -8,15 +8,18 @@ from librosa import to_mono, resample
 import numpy as np
 import soundfile as sf
 from pydub import AudioSegment
-#import tensorflow as tf
+import tensorflow as tf
 def convert_to_wav(file_name):
     file_path = f'{MEDIA_DIR}/{file_name}'
     try:
         if file_name.lower().endswith('.mp3'):
-            file_name = file_name.split('.')[0] + '.wav'
-            sound = AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
-            os.remove(file_path)
-            return file_name
+            try:
+                file_name = file_name.split('.')[0] + '.wav'
+                sound = AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
+                os.remove(file_path)
+                return file_name
+            except:
+                return ["ffmpeg is missing in your system. Install ffmpeg to handle mp3 files."]
         else:
             file_name = file_name.split('.')[0] + '.wav'
             data, samplerate = sf.read(file_path)
