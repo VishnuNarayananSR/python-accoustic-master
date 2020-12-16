@@ -8,7 +8,7 @@ from librosa import to_mono, resample
 import numpy as np
 import soundfile as sf
 from pydub import AudioSegment
-import tensorflow as tf
+#import tensorflow as tf
 def convert_to_wav(file_name):
     file_path = f'{MEDIA_DIR}/{file_name}'
     try:
