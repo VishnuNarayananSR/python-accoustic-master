@@ -35,7 +35,7 @@ body{
 footer{
     position: absolute;
     margin: 0px;
-    min-height: 15vh;
+    height: 15vh;
     min-width: 100%;
     column-span: all;
     text-align: center;
@@ -97,9 +97,6 @@ h1{
 input, button {
     margin: 10px;
   }
-.post{
-    flex-basis: 100%;
-}
 .output-badge{
     flex-basis: 30%;
     font-weight:300;
@@ -118,15 +115,26 @@ input, button {
     height: 0;
     margin: 0;
   }
+.warning{
+    height: fit-content;
+    margin: 0;
+}
 .invisible{
     display: none;
 }
-.loader, .output{
+.loader{
     text-align: center;
     flex-basis: 100%;
-    margin: 5px 50px 5px;
+    margin: 20px 50px 20px;
 }
-
+.output {
+    text-align: center;
+    flex-basis: 100%;
+    margin: 0px 50px 50px;
+}
+.output p{
+    margin: 0px 0px 15px;
+}
 .line {
     animation: expand 1s ease-in-out infinite;
     border-radius: 10px;

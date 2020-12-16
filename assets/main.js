@@ -19,13 +19,13 @@ fileInput.addEventListener("change", (e) => {
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  warn.classList.remove("invisible")
+  console.log(type)
   if (!fileToUpload) return;
   if (type.slice(0,5) != 'audio') {
     document.querySelector(".selected-file").innerHTML = `I Expected an audio file but got filetype ${type}`;
     return;
   } 
-  if (type != 'audio/x-wav'){
+  if (!type.includes('wav')){
   warn.innerHTML = `Audio formats other than 'wav' loss features due to compression. This might result in low accuracy`;
   }
 	upload(fileToUpload);

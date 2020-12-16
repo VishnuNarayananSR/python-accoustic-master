@@ -4,7 +4,6 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .backend.predict import predict
 from django.http import JsonResponse
-from time import sleep
 
 def upload(request):
     if request.method == 'POST':

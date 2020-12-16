@@ -6,18 +6,37 @@ from preprocess import purifier
 from scipy.io import wavfile
 from librosa import to_mono, resample
 import numpy as np
+import soundfile as sf
+from pydub import AudioSegment
 import tensorflow as tf
+def convert_to_wav(file_name):
+    file_path = f'{MEDIA_DIR}/{file_name}'
+    try:
+        if file_name.lower().endswith('.mp3'):
+            file_name = file_name.split('.')[0] + '.wav'
+            sound = AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
+            os.remove(file_path)
+            return file_name
+        else:
+            file_name = file_name.split('.')[0] + '.wav'
+            data, samplerate = sf.read(file_path)
+            sf.write(f'{MEDIA_DIR}/{file_name}', data, samplerate)
+            os.remove(file_path)
+            return file_name
+    except Exception as e:
+        print(e)
+        return ["Unsupported File Recieved!"]
 
 
 def predict(file_name):
-    model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     if not file_name.lower().endswith('.wav'):
-        return ['Only wav files are supported. Due to compression in other audio formats, model will not perform well']
+        file_name = convert_to_wav(file_name)
     file_path = f'{MEDIA_DIR}/{file_name}'
     try:
         sr, signal = wavfile.read(file_path)
     except:
         return ["Unsupported File Recieved!"]
+    model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     signal = signal.astype(np.float32).T
     if signal.shape[0] == 2:
         signal = to_mono(signal)
@@ -52,3 +71,5 @@ def predict(file_name):
 
 # def predicttest(file_name):
 #     return ['Place holder result','Placeholder again']
+
+
