@@ -6,7 +6,7 @@ from preprocess import purifier
 from scipy.io import wavfile
 from librosa import to_mono, resample
 import numpy as np
-#import tensorflow as tf
+import tensorflow as tf
 
 
 def predict(file_name):
@@ -48,5 +48,5 @@ def predict(file_name):
     return result
 
 
-def predicttest(file_name):
-    return ['Place holder result','Placeholder again']
+# def predicttest(file_name):
+#     return ['Place holder result','Placeholder again']
