@@ -44,7 +44,7 @@ def predict(file_name):
         if bool_mask[i]:
             result.append(j)
     if not result:
-        return ["Oops Sorry.I couldn't identify any instruments...I realise I'm a noob."]
+        return ["Oops Sorry.I couldn't distinguish any sounds...I realise I'm a noob."]
     return result
 
 

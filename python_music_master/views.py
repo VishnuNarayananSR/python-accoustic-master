@@ -11,7 +11,8 @@ def upload(request):
         except:
             return JsonResponse("Didn't recieve any file!", safe=False)
         fs = FileSystemStorage()
-        filename = fs.save(os.path.join('media/',myfile.name), myfile)
+        filepath = fs.save(os.path.join('media/',myfile.name), myfile)
+        filename = os.path.basename(filepath)
         result = predict(file_name=filename)
         return JsonResponse(result, safe=False)
         
