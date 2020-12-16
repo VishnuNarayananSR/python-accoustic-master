@@ -11,10 +11,13 @@ import tensorflow as tf
 
 def predict(file_name):
     model = tf.keras.models.load_model(SAVED_MODEL_PATH)
-    if not file_name.endswith('.wav'):
+    if not file_name.lower().endswith('.wav'):
         return ['Only wav files are supported. Due to compression in other audio formats, model will not perform well']
     file_path = f'{MEDIA_DIR}/{file_name}'
-    sr, signal = wavfile.read(file_path)
+    try:
+        sr, signal = wavfile.read(file_path)
+    except:
+        return ["Unsupported File Recieved!"]
     signal = signal.astype(np.float32).T
     if signal.shape[0] == 2:
         signal = to_mono(signal)
@@ -46,8 +49,6 @@ def predict(file_name):
     if not result:
         return ["Oops Sorry.I couldn't distinguish any sounds...I realise I'm a noob."]
     return result
-
-print(predict('ChillingMusic.wav'))
 
 # def predicttest(file_name):
 #     return ['Place holder result','Placeholder again']

@@ -1,14 +1,16 @@
 const fileInput = document.getElementById("file");
 const submitBtn = document.querySelector(".submit-btn");
 const output = document.querySelector(".output");
+const warn = document.querySelector(".warning")
 let fileToUpload = null;
+let type = null
 const csrftoken = getCookie('csrftoken');
-
 let formData = new FormData()
 fileInput.addEventListener("change", (e) => {
 	// Get the selected file
-	const [file] = e.target.files;
+  const [file] = e.target.files;
   fileToUpload = file;
+  type = file.type
   formData.append('audiofile', fileToUpload)
 	document.querySelector(".selected-file").innerHTML = `${file.name} (${(
 		file.size / 1000
@@ -16,14 +18,22 @@ fileInput.addEventListener("change", (e) => {
 });
 
 submitBtn.addEventListener("click", (e) => {
-	e.preventDefault();
-	if (!fileToUpload) return;
+  e.preventDefault();
+  warn.classList.remove("invisible")
+  if (!fileToUpload) return;
+  if (type.slice(0,5) != 'audio') {
+    document.querySelector(".selected-file").innerHTML = `I Expected an audio file but got filetype ${type}`;
+    return;
+  } 
+  if (type != 'audio/x-wav'){
+  warn.innerHTML = `Audio formats other than 'wav' loss features due to compression. This might result in low accuracy`;
+  }
 	upload(fileToUpload);
 });
 
 const upload = (file) => {
   let LOADER = "";
-  LOADER += `<p>Showing results:</p>
+  LOADER += `<p>Please wait...</p>
             <div class="loader">
               <div class="line"></div>
               <div class="line"></div>
@@ -41,6 +51,7 @@ fetch("", {
 			(response) => response.json() // if the response is a JSON object
 		)
 		.then((data) => {
+      warn.classList.add("invisible")
 			let HTML = `<p>Showing results:</p>`;
 			for (const item of data) {
         HTML += `<div class="output-badge">

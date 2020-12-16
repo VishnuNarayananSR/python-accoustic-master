@@ -83,6 +83,7 @@ h1{
 .form{
     height: 200px;
     width: 300px;
+    margin: 10px 50px 20px;
     background: linear-gradient(to right, #84fab0,#8fd3f4);
     background-size: 100% 100%;
     animation: animateBg 3s ease infinite;
@@ -112,13 +113,18 @@ input, button {
 			0 10px 10px rgba(0,0,0,0.22);
     
 }
+.break {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+  }
 .invisible{
-    visibility: hidden;
+    display: none;
 }
-.loader, .output {
+.loader, .output{
     text-align: center;
     flex-basis: 100%;
-    margin: 50px;
+    margin: 5px 50px 5px;
 }
 
 .line {
