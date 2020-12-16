@@ -1,9 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.dirname(__file__))
 from settings import *
 from preprocess import purifier
 from scipy.io import wavfile
 from librosa import to_mono, resample
 import numpy as np
 import tensorflow as tf
+
 
 def predict(file_name):
     model = tf.keras.models.load_model(SAVED_MODEL_PATH)
