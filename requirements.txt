@@ -8,3 +8,4 @@ pandas
 sklearn
 tqdm
 soundfile
+pydub
