@@ -8,7 +8,6 @@ from time import sleep
 
 def upload(request):
     if request.method == 'POST':
-        sleep(3)
         try:
             myfile = request.FILES['audiofile']
         except:
