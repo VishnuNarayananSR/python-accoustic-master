@@ -30,7 +30,7 @@ def predict(file_name):
         signal_strip = signal[i:i+DURATION]
         signal_strip.reshape(-1,1)
         if signal_strip.shape[0] < DURATION:
-            tmp = np.zeroes((DURATION,1))
+            tmp = np.zeros((DURATION,1))
             tmp[:signal_strip.shape[0],:] = signal_strip
             signal_strip = tmp
         X_test.append(signal_strip)
