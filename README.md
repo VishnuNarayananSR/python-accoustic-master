@@ -4,14 +4,15 @@
 From your command line:
 
 ```
-# Clone this repository
+Download or clone this repository.
+# To clone this repository
 $ git clone https://github.com/VishnuNarayananSR/python-accoustic-master
 
 # Go into the repository
 $ cd python-accoustic-master
 
 # Install dependencies
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 
 # Run the app
 $ python manage.py runserver
