@@ -22,8 +22,9 @@ def convert_to_wav(file_name):
                 if sys.platform.lower() == 'windows':
                     if not os.path.isdir(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build'):
                         extract_archive(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build.7z', outdir=BASE_DIR)
-                    AudioSegment.converter = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
-                    AudioSegment.ffmpeg = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
+                        sys.path.append(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build')
+                    # AudioSegment.converter = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
+                    # AudioSegment.ffmpeg = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
                 file_name = file_name.split('.')[0] + '.wav'
                 AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
                 os.remove(file_path)
