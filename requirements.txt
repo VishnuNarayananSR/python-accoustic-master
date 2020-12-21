@@ -8,4 +8,5 @@ pandas
 sklearn
 tqdm
 patool
+soundfile
 pydub
