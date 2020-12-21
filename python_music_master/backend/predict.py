@@ -6,7 +6,6 @@ from preprocess import purifier
 from scipy.io import wavfile
 from librosa import to_mono, resample
 import numpy as np
-import soundfile as sf
 from pydub import AudioSegment
 import tensorflow as tf
 from patoolib import extract_archive

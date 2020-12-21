@@ -7,5 +7,5 @@ kapre==0.3.4
 pandas
 sklearn
 tqdm
-soundfile
+patool
 pydub
