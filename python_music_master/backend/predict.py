@@ -9,17 +9,29 @@ import numpy as np
 import soundfile as sf
 from pydub import AudioSegment
 import tensorflow as tf
+from patoolib import extract_archive
+class ffmpegError(Exception):
+    pass
+class unsupportedFile(Exception):
+    pass
 def convert_to_wav(file_name):
     file_path = f'{MEDIA_DIR}/{file_name}'
     try:
         if file_name.lower().endswith('.mp3'):
             try:
+                if sys.platform.lower() == 'windows':
+                    if not os.path.isdir(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build'):
+                        extract_archive(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build.7z', outdir=BASE_DIR)
+                    AudioSegment.converter = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
+                    AudioSegment.ffmpeg = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
                 file_name = file_name.split('.')[0] + '.wav'
-                sound = AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
+                AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
                 os.remove(file_path)
                 return file_name
-            except:
-                return ["ffmpeg is missing in your system. Install ffmpeg to handle mp3 files."]
+            except Exception as e:
+                print('\n<<<<<<<<<<<<<<<<<<<<<<<<<<<Exception>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+                print(e)
+                raise ffmpegError
         else:
             file_name = file_name.split('.')[0] + '.wav'
             data, samplerate = sf.read(file_path)
@@ -27,17 +39,20 @@ def convert_to_wav(file_name):
             os.remove(file_path)
             return file_name
     except Exception as e:
+        print('\n<<<<<<<<<<<<<<<<<<<<<<<<<<<Exception>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         print(e)
-        return ["Unsupported File Recieved!"]
+        raise unsupportedFile
 
 
 def predict(file_name):
-    if not file_name.lower().endswith('.wav'):
-        file_name = convert_to_wav(file_name)
-    file_path = f'{MEDIA_DIR}/{file_name}'
     try:
+        if not file_name.lower().endswith('.wav'):
+            file_name = convert_to_wav(file_name)
+        file_path = f'{MEDIA_DIR}/{file_name}'
         sr, signal = wavfile.read(file_path)
-    except:
+    except ffmpegError:
+        return ["Sorry. Your system is incompatible with the ffmpeg version. Please try inputting other file types than mp3"]
+    except unsupportedFile:
         return ["Unsupported File Recieved!"]
     model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     signal = signal.astype(np.float32).T
@@ -74,5 +89,6 @@ def predict(file_name):
 
 # def predicttest(file_name):
 #     return ['Place holder result','Placeholder again']
+
 
 
