@@ -22,9 +22,7 @@ def convert_to_wav(file_name):
                 if sys.platform.lower() != 'linux':
                     if not os.path.isdir(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build'):
                         extract_archive(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build.7z', outdir=BASE_DIR)
-                    # AudioSegment.converter = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
-                    # AudioSegment.ffmpeg = f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build/bin/ffmpeg.exe'
-                    sys.path.append(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build')
+                    os.environ["PATH"] += (os.pathsep + BASE_DIR + r'\ffmpeg-2020-12-20-git-ab6a56773f-full_build\bin')
                 file_name = file_name.split('.')[0] + '.wav'
                 AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
                 os.remove(file_path)
@@ -90,6 +88,3 @@ def predict(file_name):
 
 # def predicttest(file_name):
 #     return ['Place holder result','Placeholder again']
-
-
-
