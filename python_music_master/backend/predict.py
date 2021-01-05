@@ -14,6 +14,8 @@ class ffmpegError(Exception):
     pass
 class unsupportedFile(Exception):
     pass
+class zipError(Exception):
+    pass
 def convert_to_wav(file_name):
     file_path = f'{MEDIA_DIR}/{file_name}'
     try:
@@ -21,12 +23,17 @@ def convert_to_wav(file_name):
             try:
                 if sys.platform.lower() != 'linux':
                     if not os.path.isdir(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build'):
-                        extract_archive(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build.7z', outdir=BASE_DIR)
+                        try:
+                            extract_archive(f'{BASE_DIR}/ffmpeg-2020-12-20-git-ab6a56773f-full_build.7z', outdir=BASE_DIR)
+                        except:
+                            raise zipError
                     os.environ["PATH"] += (os.pathsep + BASE_DIR + r'\ffmpeg-2020-12-20-git-ab6a56773f-full_build\bin')
                 file_name = file_name.split('.')[0] + '.wav'
                 AudioSegment.from_mp3(file_path).export(f'{MEDIA_DIR}/{file_name}', format="wav")
                 os.remove(file_path)
                 return file_name
+            except zipError:
+                raise zipError
             except Exception as e:
                 print('\n<<<<<<<<<<<<<<<<<<<<<<<<<<<Exception>>>>>>>>>>>>>>>>>>>>>>>>>>>')
                 print(e)
@@ -37,6 +44,10 @@ def convert_to_wav(file_name):
             sf.write(f'{MEDIA_DIR}/{file_name}', data, samplerate)
             os.remove(file_path)
             return file_name
+    except zipError:
+        raise zipError
+    except ffmpegError:
+        raise ffmpegError
     except Exception as e:
         print('\n<<<<<<<<<<<<<<<<<<<<<<<<<<<Exception>>>>>>>>>>>>>>>>>>>>>>>>>>>')
         print(e)
@@ -53,6 +64,8 @@ def predict(file_name):
         return ["Sorry. Your system is incompatible with the ffmpeg version. Please try inputting other file types than mp3"]
     except unsupportedFile:
         return ["Unsupported File Recieved!"]
+    except zipError:
+        return ["You must have 7zip installed to extract dependencies. This is required only for the first run"]
     model = tf.keras.models.load_model(SAVED_MODEL_PATH)
     signal = signal.astype(np.float32).T
     if signal.shape[0] == 2:
