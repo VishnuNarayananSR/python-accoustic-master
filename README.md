@@ -8,7 +8,7 @@ Download or clone this repository.
 # To clone this repository
 $ git clone https://github.com/VishnuNarayananSR/python-accoustic-master
 
-# Go into the repository
+# Go into the project folder
 $ cd python-accoustic-master
 
 # Install dependencies
